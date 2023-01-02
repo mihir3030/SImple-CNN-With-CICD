@@ -1,0 +1,9 @@
+tensorflow
+dvc
+notebook
+numpy
+matplotlib
+seaborn 
+
+# local env
+-e .
