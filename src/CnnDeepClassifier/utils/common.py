@@ -1,10 +1,11 @@
 import os
 import yaml
 import json
+from pathlib import Path
 from ensure import ensure_annotations
 # with help of ConfigBox we can get dictinory keys using dict.key - more refere trails.ipynb
 from box import ConfigBox
-from box.Exception import BoxValueError
+from box.exceptions import BoxValueError
 from CnnDeepClassifier import logger
 
 # ensure_annotation verifies that function output will be -> annotation type output 
@@ -29,3 +30,16 @@ def read_yaml_file(path_to_yaml: Path) -> ConfigBox:  # so in annotation type we
         raise ValueError("yaml is empty")
     except  Exception as e:
         raise e
+
+
+@ensure_annotations
+def create_directories(path_to_directories: list, verbose=True):
+    """create list of directories
+    Args:
+        path_to_directories (list): list of path of directories
+        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
+    """
+    for path in path_to_directories:
+        os.makedirs(path, exist_ok=True)
+        if verbose:
+            logger.info(f"created directory at {path}")
