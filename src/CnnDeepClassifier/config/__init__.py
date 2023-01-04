@@ -1,0 +1,1 @@
+from CnnDeepClassifier.config.configuration import ConfigurationManager
